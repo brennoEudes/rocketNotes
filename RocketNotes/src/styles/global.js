@@ -9,8 +9,17 @@ export default createGlobalStyle`
 }
 
 body {
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900}; // estilizações definidas em theme.js
+    background-color: ${({ theme }) =>
+      theme.COLORS.BACKGROUND_900}; // estilizações definidas em theme.js
     color: ${({ theme }) => theme.COLORS.WHITE};
+
+    -webkit-font-smoothing: antialised;
+}
+
+body, input, button, textarea {
+    font-family: "Roboto Slab", serif;
+    font-size: 16px;
+    outline: none; // removendo qq linha dos contornos
 }
 
 
