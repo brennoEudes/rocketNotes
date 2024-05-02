@@ -9,7 +9,7 @@ export default createGlobalStyle`
 }
 
 body {
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900}; // estilizações definidas em theme.js
     color: ${({ theme }) => theme.COLORS.WHITE};
 }
 
