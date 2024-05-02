@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Details } from "./pages/Details.jsx";
+import { Details } from "./pages/Details";
 
 // O ReactDom vai renderizar a div "root"!
 ReactDOM.createRoot(document.getElementById("root")).render(
