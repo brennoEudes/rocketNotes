@@ -3,6 +3,7 @@ import { Container, Links } from "./style";
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { Section } from "../../components/Section";
+import { Tag } from "../../components/Tag";
 
 export function Details() {
   return (
@@ -18,6 +19,10 @@ export function Details() {
             <a href="#">https://www.rockeseat.com.br/</a>
           </li>
         </Links>
+      </Section>
+      <Section title="Marcadores">
+        <Tag title="Express"/>
+        <Tag title="NodeJS"/>
       </Section>
       {/* <Button title="Login" loading /> loading é prop. boleana e ñ é necessario dizer true/false */}
       <Button title="Voltar" />
