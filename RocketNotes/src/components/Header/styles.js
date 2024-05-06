@@ -20,7 +20,6 @@ export const Profile = styled.div`
   align-items: center;
   gap: 14px;
 
-
   > img {
     width: 56px;
     height: 56px;
@@ -35,14 +34,22 @@ export const Profile = styled.div`
 
     span {
       font-size: 14px;
-      color: ${({theme})=> theme.COLORS.GRAY_100};
+      color: ${({ theme }) => theme.COLORS.GRAY_100};
     }
 
     strong {
       font-size: 18px;
-      color: ${({theme})=> theme.COLORS.WHITE};
+      color: ${({ theme }) => theme.COLORS.WHITE};
     }
+  }
+`;
 
+export const Logout = styled.button`
+  border: none;
+  background: none;
 
+  > svg {
+    font-size: 36px;
+    color: ${({ theme }) => theme.COLORS.GRAY_100};
   }
 `;
