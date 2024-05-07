@@ -52,6 +52,10 @@ export const Search = styled.div`
 `;
 export const Content = styled.div`
   grid-area: content;
+  padding: 0 64px;
+
+  overflow-y: auto; // barra de scroll "auto" = automático somente quando houver necessidade!
+
 `;
 export const NewNote = styled.button`
   grid-area: newnote;
