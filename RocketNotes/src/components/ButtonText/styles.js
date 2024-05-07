@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   background: none;
+
+  // styled component correction ($isactive)!
   color: ${({ theme, $isactive }) =>
     $isactive ? theme.COLORS.ORANGE : theme.COLORS.GRAY_100}; // passando a prop. isActive e usando condicional.
 
