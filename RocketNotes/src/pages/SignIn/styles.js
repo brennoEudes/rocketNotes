@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// signinBg é variável que criamos p/ armazenar a imagem e vamos chamá-la no componente!
 import signinBg from "../../assets/bg-signin.png";
 
 export const Container = styled.div`
@@ -42,6 +43,6 @@ export const Form = styled.form`
 // exportamos como div pois queremos usar a img como bg da div lateral da tela:
 export const Background = styled.div`
 flex: 1; // ocupa todo o espaço disponível
-background: url(${signinBg}) no-repeat center;
+background: url(${signinBg}) no-repeat center center; // chamamos a var criada aqui!
 background-size: cover;
 `;
