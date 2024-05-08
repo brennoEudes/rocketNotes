@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import signinBg from "../../assets/signinBg.png";
+
 export const Container = styled.div`
   height: 100vh;
 
@@ -35,4 +37,11 @@ export const Form = styled.form`
     margin-top: 124px;
     color: ${({ theme }) => theme.COLORS.ORANGE};
   }
+`;
+
+// exportamos como div pois queremos usar a img como bg da div lateral da tela:
+export const Background = styled.div`
+flex: 1; // ocupa todo o espaço disponível
+background: url(${signinBg}) no-repeat center;
+background-size: cover;
 `;
