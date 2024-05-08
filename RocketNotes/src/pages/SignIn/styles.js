@@ -25,8 +25,7 @@ export const Form = styled.form`
 
   > h2 {
     font-size: 24px;
-    margin-top: 84px;
-    margin-bottom: 24px;
+    margin: 48px 0;
   }
 
   p {
@@ -42,7 +41,7 @@ export const Form = styled.form`
 
 // exportamos como div pois queremos usar a img como bg da div lateral da tela:
 export const Background = styled.div`
-flex: 1; // ocupa todo o espaço disponível
-background: url(${signinBg}) no-repeat center center; // chamamos a var criada aqui!
-background-size: cover;
+  flex: 1; // ocupa todo o espaço disponível
+  background: url(${signinBg}) no-repeat center center; // chamamos a var criada aqui!
+  background-size: cover;
 `;
