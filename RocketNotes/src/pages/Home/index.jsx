@@ -50,7 +50,7 @@ export function Home() {
         </Section>
       </Content>
 
-      <NewNote>
+      <NewNote to="/new-note"> {/* como alterar o styled.button p/ styled.(Link) precisamos inserir o "to" */}
         <FiPlus />
         Criar Nota
       </NewNote>
