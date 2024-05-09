@@ -1,4 +1,5 @@
 import { Container, Form, Background } from "./styles";
+import { Link } from "react-router-dom"; // p/ navegação
 
 import { FiMail, FiLock, FiUser} from "react-icons/fi";
 import { Input } from "../../components/Input";
@@ -17,7 +18,7 @@ export function SignUp() {
         <Input type="text" placeholder="E-mail" icon={FiMail} />
         <Input type="password" placeholder="Senha" icon={FiLock} />
         <Button title="Cadastrar" />
-        <a href="#">Voltar para o login</a>
+        <Link to="/">Voltar para o login</Link>
       </Form>
     </Container>
   );
