@@ -5,14 +5,14 @@ import GlobalStyle from "./styles/global";
 
 import theme from "./styles/theme";
 
-import { NewNote } from "./pages/NewNote";
+import { Routes } from "./routes";
 
 // O ReactDom vai renderizar a div "root"!
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <NewNote />
+      <Routes />
     </ThemeProvider>
   </React.StrictMode>
 );
