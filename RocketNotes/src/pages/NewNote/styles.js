@@ -9,6 +9,19 @@ export const Container = styled.div`
   grid-template-areas:
     "header"
     "content";
+
+  // barra de rolagem somente no conteúdo da main (header fixo):
+  main {
+    grid-area: content;
+    /* overflow-y: scroll; */
+    overflow-y: auto; // só ativa a barra quando o conteúdo ñ caber na tela
+  }
+
+  .tags {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; // quando não tiver mais espaço, joga o item para a linha de baixo.
+  }
 `;
 
 export const Form = styled.form`
