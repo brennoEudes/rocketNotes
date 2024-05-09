@@ -1,6 +1,6 @@
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
-// import { TextArea } from "../../components/TextArea";
+import { TextArea } from "../../components/TextArea";
 
 import { Container, Form } from "./styles";
 
@@ -17,7 +17,7 @@ export function NewNote() {
 
           <Input placeholder="Título"/>
 
-          {/* <TextArea placeholder="Observações" /> */}
+          <TextArea placeholder="Observações" />
         </Form>
       </main>
     </Container>
