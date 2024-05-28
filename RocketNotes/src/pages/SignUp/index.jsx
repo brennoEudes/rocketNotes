@@ -10,6 +10,9 @@ import { Button } from "../../components/Button";
 
 export function SignUp() {
   const [name, setName] = useState("");
+  // Dentro do vetor, acessamos o estado e a fcn q atualiza o estado! Nomes são livre escolhas. Por padrão, usamos "set" + nome do estado.
+  // Dentro do estado, informamos o valor inicial, no caso, vazio ("").
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,20 +25,24 @@ export function SignUp() {
     }
 
     api
-      .post("/users", { name, email, password })
-      // executa se tudo der certo
+      .post("/users", { name, email, password }) // rota de cadastro do user, em q 2º parametro é obj com as informações do user a serem enviadas p/ backend!
+
+      // executa se tudo der certo:
       .then(() => {
         alert("Usuário cadastrado com sucesso!");
-        navigate("/")// navega p/ pág signin
+        navigate("/"); // navega p/ pág signin
       })
+
       // executa se der errado
       .catch((error) => {
         if (error.response) {
-          alert(error.response.data.message); // pegando msg do UsersController no backend, q já checa por lá se o usuário existe!
+          alert(error.response.data.message); // p/ ser mais específico, pegamos msg do UsersController no backend, q no caso, já checa por lá se o usuário existe!
         } else {
-          alert("Não foi possível cadastrar!")
+          alert("Não foi possível cadastrar!");
         }
       });
+
+    // OBS: Lembrando q acima tb poderíamos ter usado o async/await!
   }
 
   return (
@@ -51,7 +58,7 @@ export function SignUp() {
           icon={FiUser}
           onChange={(e) => setName(e.target.value)}
         />{" "}
-        {/* onChange é fcn q dispara um evento toda vez q o valor do input muda*/}
+        {/* onChange é fcn q dispara um evento toda vez q o valor do input muda. Ela passa o valor p/ fcn "set"*/}
         <Input
           type="text"
           placeholder="E-mail"
