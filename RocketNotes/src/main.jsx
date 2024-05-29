@@ -5,7 +5,7 @@ import GlobalStyle from "./styles/global";
 
 import theme from "./styles/theme";
 
-import { MyContext } from "./myContext"; // importe contexto
+import { AuthProvider } from "./hooks/auth"; // importe hook
 
 import { Routes } from "./routes";
 
@@ -14,9 +14,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <MyContext.Provider value={{name: "Brenno Eudes", email: "brenno@teste.com"}}> {/* O contexto provê um valor p/ todas as rotas */}
+      <AuthProvider>
         <Routes />
-      </MyContext.Provider>
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
