@@ -1,6 +1,6 @@
 // Hooks: Centralizam toda a lógica de utilização dos ctxts:
 
-import { createContext, useContext, useState } from "react"; // createContext é o famoso context API do react
+import { createContext, useContext, useEffect, useState } from "react"; // createContext é o famoso context API do react
 
 import { api } from "../services/api"; // importe api p/ enviar dados p/ backend
 
@@ -16,10 +16,16 @@ function AuthProvider({ children }) {
       const response = await api.post("/sessions", { email, password });
       const { user, token } = response.data;
 
+      // armazenando user info no local storage.
+      // Boa prática: Padrão @ + nome da app: nome da chave
+      // PARSE: JSON.stringify é fcn do json q converte obj em txt!
+      localStorage.setItem("@rockenotes:user", JSON.stringify(user));
+      localStorage.setItem("@rockenotes:token", token); // ñ precisa converter pois token é txt
+
       // LEITURA DE TRÁS PRA FRENTE!
       // inserindo um token do tipo bearer, de auth, no cabeçalho, por padrão, de todas as REQs do user!
       api.defaults.headers.authorization = `Bearer ${token}`;
-      setData({user, token}); // armazenando infos
+      setData({ user, token }); // armazenando infos
 
       console.log(user, token);
     } catch (error) {
@@ -30,6 +36,24 @@ function AuthProvider({ children }) {
       }
     }
   }
+
+  // USEEFFECT
+  // Boa prática: sempre perto do return
+  // 1º parte (arrow fcn): o q queremos executar após a renderização?
+  // 2º parte (vetor): estado desejado. Se vazio, será carregado uma vez após a renderização.
+  useEffect(() => {
+    const token = localStorage.getItem("@rockenotes:token");
+    const user = localStorage.getItem("@rockenotes:user");
+
+    if (token && user) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
+      setData({
+        token,
+        user: JSON.parse(user), // retorna o formato dos dados do user de txt p/ obj json!
+      });
+    }
+  }, []);
 
   // recebendo o children do AuthProvider lá do main.js, no caso, é o componente Routes.
   return (
