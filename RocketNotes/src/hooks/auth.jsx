@@ -40,7 +40,7 @@ function AuthProvider({ children }) {
   // USEEFFECT
   // Boa prática: sempre perto do return
   // 1º parte (arrow fcn): o q queremos executar após a renderização?
-  // 2º parte (vetor): estado desejado. Se vazio, será carregado uma vez após a renderização.
+  // 2º parte (vetor): estado dependente q quando mudado, executará o useeffect. Se vazio, será carregado uma vez após a renderização.
   useEffect(() => {
     const token = localStorage.getItem("@rockenotes:token");
     const user = localStorage.getItem("@rockenotes:user");
