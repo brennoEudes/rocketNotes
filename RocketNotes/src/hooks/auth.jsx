@@ -45,6 +45,22 @@ function AuthProvider({ children }) {
     setData({}); // volta o estado c/ obj vazio
   }
 
+  async function updateProfile({ user }) {
+    try {
+      await api.put("/users", user);
+      localStorage.setItem("@rockenotes:user", JSON.stringify(user)); // atualiza a info do user no storage e estado
+
+      setData({ user, token: data.token }); // pegando o token já existente
+      alert("Perfil atualizado com sucesso!");
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert("Não foi possível atualizar o perfil!");
+      }
+    }
+  }
+
   // USEEFFECT
   // Boa prática: sempre perto do return
   // 1º parte (arrow fcn): o q queremos executar após a renderização?
@@ -70,6 +86,7 @@ function AuthProvider({ children }) {
       value={{
         signIn,
         signOut,
+        updateProfile,
         user: data.user,
       }}
     >
