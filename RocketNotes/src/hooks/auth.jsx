@@ -37,6 +37,13 @@ function AuthProvider({ children }) {
     }
   }
 
+  function signOut() {
+    localStorage.removeItem("@rockenotes:token");
+    localStorage.removeItem("@rockenotes:user");
+
+    setData({}); // volta o estado c/ obj vazio
+  }
+
   // USEEFFECT
   // Boa prática: sempre perto do return
   // 1º parte (arrow fcn): o q queremos executar após a renderização?
@@ -58,7 +65,13 @@ function AuthProvider({ children }) {
   // recebendo o children do AuthProvider lá do main.js, no caso, é o componente Routes.
   return (
     // compartilhando a fcn signIn e o estado "data" no provider (ctxt)
-    <AuthContext.Provider value={{ signIn, user: data.user }}>
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signOut,
+        user: data.user,
+      }}
+    >
       {" "}
       {/* O contexto provê um valor p/ todas as rotas */}
       {children}
