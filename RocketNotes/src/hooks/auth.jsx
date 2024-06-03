@@ -24,7 +24,8 @@ function AuthProvider({ children }) {
 
       // LEITURA DE TRÁS PRA FRENTE!
       // inserindo um token do tipo bearer, de auth, no cabeçalho, por padrão, de todas as REQs do user!
-      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
       setData({ user, token }); // armazenando infos
 
       console.log(user, token);
@@ -53,7 +54,7 @@ function AuthProvider({ children }) {
     const user = localStorage.getItem("@rockenotes:user");
 
     if (token && user) {
-      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       setData({
         token,
