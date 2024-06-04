@@ -14,6 +14,9 @@ export function NewNote() {
   const [links, setLinks] = useState([]); // setLinks guarda todos os links
   const [newLink, setNewLink] = useState(""); // setNewLink armazena o link add no momento
 
+  const [tags, setTags] = useState([]);
+  const [newTag, setNewTag] = useState("");
+
   function handleAddLink() {
     setLinks((prevState) => [...prevState, newLink]); // mantém o q tinha antes + o novo link
     setNewLink(""); // reset estado
@@ -21,6 +24,11 @@ export function NewNote() {
 
   function handleRemoveLink(deleted) {
     setLinks((prevState) => prevState.filter((link) => link !== deleted)); // retorna lista nova c/ links diferentes do link deletado
+  }
+
+  function handleAddTag() {
+    setTags((prevState) => [...prevState, newTag]);
+    setNewTag("");
   }
 
   return (
@@ -39,7 +47,7 @@ export function NewNote() {
           <Section title="Links Úteis">
             {links.map((link, index) => (
               <NoteItem
-                key={String(index)}
+                key={String(index)} // sempre q temos componentes gerados a partir de listas, colocamos uma chave
                 value={link}
                 onClick={() => {
                   handleRemoveLink(link);
@@ -56,8 +64,17 @@ export function NewNote() {
           </Section>
           <Section title="Marcadores">
             <div className="tags">
-              <NoteItem value="React" />
-              <NoteItem isNew placeholder="Nova tag" />
+              {tags.map((tag, index) => (
+                <NoteItem key={String(index)} value={tag} onClick={() => {}} />
+              ))}
+
+              <NoteItem
+                isNew
+                placeholder="Nova tag"
+                onChange={(e) => setNewTag(e.target.value)}
+                value={newTag}
+                onClick={handleAddTag}
+              />
             </div>
           </Section>
           <Button title="Salvar" />
