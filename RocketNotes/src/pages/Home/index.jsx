@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import { FiPlus, FiSearch } from "react-icons/fi"; // importando ícone
 import { Container, Brand, Menu, Search, Content, NewNote } from "./styles";
 
@@ -7,7 +9,21 @@ import { Input } from "../../components/Input";
 import { Section } from "../../components/Section";
 import { Note } from "../../components/Note";
 
+import { api } from "../../services/api";
+
 export function Home() {
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    // É possível criar uma fcn dentro do useEffect q será usada somente nele:
+    async function fetchTags() {
+      const response = await api.get("/tags");
+      setTags(response.data); // armazena os dados da RES
+    }
+
+    fetchTags();
+  }, []);
+
   return (
     <Container>
       <Brand>
@@ -18,17 +34,14 @@ export function Home() {
 
       <Menu>
         <li>
-          <ButtonText title="Todos" />
+          <ButtonText title="Todos" isActive />
         </li>
-        <li>
-          <ButtonText title="Frontend" />
-        </li>
-        <li>
-          <ButtonText title="NodeJS" />
-        </li>
-        <li>
-          <ButtonText title="ReactJS" />
-        </li>
+        {tags &&
+          tags.map((tag) => (
+            <li key={String(tag.id)}>
+              <ButtonText title={tag.name} />
+            </li>
+          ))}
       </Menu>
 
       <Search>
@@ -50,7 +63,9 @@ export function Home() {
         </Section>
       </Content>
 
-      <NewNote to="/new-note"> {/* como alterar o styled.button p/ styled.(Link) precisamos inserir o "to" */}
+      <NewNote to="/new-note">
+        {" "}
+        {/* como alterar o styled.button p/ styled.(Link) precisamos inserir o "to" */}
         <FiPlus />
         Criar Nota
       </NewNote>
