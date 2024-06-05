@@ -16,8 +16,17 @@ export function Details() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate("/")
+    navigate("/");
+  }
 
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja realmente excluir a nota?"); // confirm é mét JS q guarda booleano. É uma boa prática perguntar antes da remoção para evitar erros do usuário
+    
+    // se clicar no confirmar:
+    if (confirm) {
+      await api.delete(`/notes/${params.id}`); // acessamos através de params pois temos o id da nota na rota
+      navigate("/");
+    }
   }
 
   useEffect(() => {
@@ -35,7 +44,7 @@ export function Details() {
       {data && ( // main só será mostrado se houver conteúdo!
         <main>
           <Content>
-            <ButtonText title="Excluir nota" />
+            <ButtonText title="Excluir nota" onClick={handleRemove} />
             <h1>{data.title}</h1>
             <p>{data.description}</p>
             {data.links && ( // a sessão só será renderizada se houver links!
@@ -44,7 +53,9 @@ export function Details() {
                 <Links>
                   data.links.map((link) => (
                   <li key={String(link.id)}>
-                    <a href="{link.url}" target="_blank">{link.url}</a>
+                    <a href="{link.url}" target="_blank">
+                      {link.url}
+                    </a>
                   </li>
                   ))
                 </Links>
@@ -52,7 +63,7 @@ export function Details() {
             )}
 
             {data.tags && (
-              <Section title="Marcadores" >
+              <Section title="Marcadores">
                 {data.tags.map((tag) => (
                   <Tag key={String(tag.id)} title={tag.title} />
                 ))}
