@@ -36,13 +36,16 @@ export function Profile() {
   }
 
   async function handleUpdate() {
-    const user = {
+    const updated = {
       name,
       email,
       password: newPassword,
       old_password: oldPassword,
     };
-    await updateProfile({ user, avatarFile }); // passando os dados atualizados p/ o backend
+    const userUpdated = Object.assign(user, updated); // mét JS q sobescreve infos automaticamente, permitindo pegar todos os elementos atualizados!
+    //return console.log(userUpdated);
+
+    await updateProfile({ user: userUpdated, avatarFile }); // passando os dados atualizados p/ o backend
   }
 
   function handleChangeAvatar(event) {
@@ -58,7 +61,7 @@ export function Profile() {
     <Container>
       <header>
         <button type="button" onClick={handleBack}>
-          <FiArrowLeft  />
+          <FiArrowLeft />
         </button>
       </header>
 
