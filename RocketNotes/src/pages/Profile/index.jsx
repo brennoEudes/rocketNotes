@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom"; // p/ navegação
+import { useNavigate } from "react-router-dom"; // substitui "Link" p/ navegação
 import { useState } from "react";
 
 import { useAuth } from "../../hooks/auth";
 
-import {api} from "../../services/api";
+import { api } from "../../services/api";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 
 import { FiArrowLeft, FiUser, FiMail, FiLock, FiCamera } from "react-icons/fi";
@@ -22,10 +22,18 @@ export function Profile() {
   const [oldPassword, setOldPassword] = useState();
   const [newPassword, setNewPassword] = useState();
 
-  const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
+  const avatarUrl = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder;
 
   const [avatar, setAvatar] = useState(avatarUrl); // inicia com img default ou avatar do usuário
   const [avatarFile, setAvatarFile] = useState(null); // inicia sem avatar
+
+  const navigate = useNavigate();
+
+  function handleBack() {
+    navigate(-1);
+  }
 
   async function handleUpdate() {
     const user = {
@@ -49,9 +57,9 @@ export function Profile() {
   return (
     <Container>
       <header>
-        <Link to="/">
-          <FiArrowLeft />
-        </Link>
+        <button type="button" onClick={handleBack}>
+          <FiArrowLeft  />
+        </button>
       </header>
 
       <Form>

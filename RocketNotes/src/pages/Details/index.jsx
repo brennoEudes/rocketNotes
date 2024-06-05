@@ -16,7 +16,7 @@ export function Details() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate("/");
+    navigate(-1); // Evita a adição de uma nova rota p/ pág anterior no histórico de navegação, melhorando a performance da app! (obs: não vai p/ próx camada do bolo!)
   }
 
   async function handleRemove() {
@@ -25,7 +25,7 @@ export function Details() {
     // se clicar no confirmar:
     if (confirm) {
       await api.delete(`/notes/${params.id}`); // acessamos através de params pois temos o id da nota na rota
-      navigate("/");
+      navigate(-1);
     }
   }
 
