@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { FiPlus, FiSearch } from "react-icons/fi"; // importando ícone
 import { Container, Brand, Menu, Search, Content, NewNote } from "./styles";
@@ -17,6 +18,8 @@ export function Home() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [notes, setNotes] = useState([]);
 
+  const navigate = useNavigate();
+
   function handleTagSelected(tagName) {
     // desmarca todas as seleções de uma única vez:
     if (tagName === "all") {
@@ -34,6 +37,10 @@ export function Home() {
       // se tag não selecionada:
       setSelectedTags((prevState) => [...prevState, tagName]); // prevState permite a multipla seleção das tags
     }
+  }
+
+  function handleDetails(id) {
+    navigate(`/details/${id}`);
   }
 
   useEffect(() => {
@@ -97,7 +104,11 @@ export function Home() {
       <Content>
         <Section title="Minhas Notas">
           {notes.map((note) => (
-            <Note key={String(note.id)} data={note} />
+            <Note
+              key={String(note.id)}
+              data={note}
+              onClick={() => handleDetails(note.id)}
+            />
           ))}
         </Section>
       </Content>
