@@ -12,8 +12,10 @@ import { Note } from "../../components/Note";
 import { api } from "../../services/api";
 
 export function Home() {
+  const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [notes, setNotes] = useState([]);
 
   function handleTagSelected(tagName) {
     const alreadySelected = selectedTags.includes(tagName); // verifica se a tag está selecionada
@@ -23,7 +25,6 @@ export function Home() {
       // se tag já selecionada:
       const filteredTags = selectedTags.filter((tag) => tag !== tagName);
       setSelectedTags(filteredTags);
-
     } else {
       // se tag não selecionada:
       setSelectedTags((prevState) => [...prevState, tagName]); // prevState permite a multipla seleção das tags
@@ -39,6 +40,17 @@ export function Home() {
 
     fetchTags();
   }, []);
+
+  useEffect(() => {
+    async function fetchNotes() {
+      const response = await api.get(
+        `/notes?title=${search}&tags=${selectedTags}`
+      ); // enviando title e tags através de queries!
+      setNotes(response.data);
+    }
+
+    fetchNotes();
+  }, [selectedTags, search]); // Em [], informamos os estados dependentes, ou seja, quando os conteúdos do vetor mudarem, o useEffect será executado novamente.
 
   return (
     <Container>
@@ -69,21 +81,19 @@ export function Home() {
       </Menu>
 
       <Search>
-        <Input placeholder="Pesquisar pelo título" icon={FiSearch} />{" "}
+        <Input
+          placeholder="Pesquisar pelo título"
+          icon={FiSearch}
+          onChange={(e) => setSearch(e.target.value)}
+        />
         {/* inserindo a lupa */}
       </Search>
 
       <Content>
         <Section title="Minhas Notas">
-          <Note
-            data={{
-              title: "ReactJS",
-              tags: [
-                { id: "1", name: "react" },
-                { id: "2", name: "rocketseat" },
-              ],
-            }}
-          />
+          {notes.map((note) => (
+            <Note key={String(note.id)} data={note} />
+          ))}
         </Section>
       </Content>
 
