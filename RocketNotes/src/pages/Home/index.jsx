@@ -18,6 +18,11 @@ export function Home() {
   const [notes, setNotes] = useState([]);
 
   function handleTagSelected(tagName) {
+    // desmarca todas as seleções de uma única vez:
+    if (tagName === "all") {
+      return setSelectedTags([]);
+    }
+
     const alreadySelected = selectedTags.includes(tagName); // verifica se a tag está selecionada
     //console.log(alreadySelected); // booleano true ou false
 
