@@ -13,6 +13,22 @@ import { api } from "../../services/api";
 
 export function Home() {
   const [tags, setTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  function handleTagSelected(tagName) {
+    const alreadySelected = selectedTags.includes(tagName); // verifica se a tag está selecionada
+    //console.log(alreadySelected); // booleano true ou false
+
+    if (alreadySelected) {
+      // se tag já selecionada:
+      const filteredTags = selectedTags.filter((tag) => tag !== tagName);
+      setSelectedTags(filteredTags);
+
+    } else {
+      // se tag não selecionada:
+      setSelectedTags((prevState) => [...prevState, tagName]); // prevState permite a multipla seleção das tags
+    }
+  }
 
   useEffect(() => {
     // É possível criar uma fcn dentro do useEffect q será usada somente nele:
@@ -34,12 +50,20 @@ export function Home() {
 
       <Menu>
         <li>
-          <ButtonText title="Todos" isActive />
+          <ButtonText
+            title="Todos"
+            onClick={() => handleTagSelected("all")}
+            isActive={selectedTags.length === 0}
+          />
         </li>
         {tags &&
           tags.map((tag) => (
             <li key={String(tag.id)}>
-              <ButtonText title={tag.name} />
+              <ButtonText
+                title={tag.name}
+                onClick={() => handleTagSelected(tag.name)}
+                isActive={selectedTags.includes(tag.name)} // verifica se a tag está na lista, ou seja, selecionada
+              />
             </li>
           ))}
       </Menu>
