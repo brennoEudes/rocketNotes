@@ -1,5 +1,5 @@
 // rotas da aplicação c/ usuário logado:
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 // importando as páginas acessadas após o login:
 import { Home } from "../pages/Home";
@@ -16,6 +16,8 @@ export function AppRoutes() {
       <Route path="/new-note" element={<NewNote />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/details/:id" element={<Details />} /> {/* precisa do cód da nota, por isso add ":id" */}
+
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
