@@ -5,7 +5,7 @@ import { SignIn } from "../pages/SignIn";
 import { SignUp } from "../pages/SignUp";
 
 export function AuthRoutes() {
-  const user = localStorage.getItem("@rockenotes:user"); // pegando user direto do localstorage. Assim, configuramos q o tratamento das rotas disponíveis só sera renderizado se user for null. (Proteção contra favoritação nos browsers.)
+  const user = localStorage.getItem("@rocketnotes:user"); // pegando user direto do localstorage. Assim, configuramos q o tratamento das rotas disponíveis só sera renderizado se user for null. (Proteção contra favoritação nos browsers.)
 
   return (
     <Routes>

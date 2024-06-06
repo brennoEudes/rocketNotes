@@ -19,8 +19,8 @@ function AuthProvider({ children }) {
       // armazenando user info no local storage.
       // Boa prática: Padrão @ + nome da app: nome da chave
       // PARSE: JSON.stringify é fcn do json q converte obj em txt!
-      localStorage.setItem("@rockenotes:user", JSON.stringify(user));
-      localStorage.setItem("@rockenotes:token", token); // ñ precisa converter pois token é txt
+      localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
+      localStorage.setItem("@rocketnotes:token", token); // ñ precisa converter pois token é txt
 
       // LEITURA DE TRÁS PRA FRENTE!
       // inserindo um token do tipo bearer, de auth, no cabeçalho, por padrão, de todas as REQs do user!
@@ -39,8 +39,8 @@ function AuthProvider({ children }) {
   }
 
   function signOut() {
-    localStorage.removeItem("@rockenotes:token");
-    localStorage.removeItem("@rockenotes:user");
+    localStorage.removeItem("@rocketnotes:token");
+    localStorage.removeItem("@rocketnotes:user");
 
     setData({}); // volta o estado c/ obj vazio
   }
@@ -56,7 +56,7 @@ function AuthProvider({ children }) {
       }
 
       await api.put("/users", user);
-      localStorage.setItem("@rockenotes:user", JSON.stringify(user)); // atualiza a info do user no storage e estado
+      localStorage.setItem("@rocketnotes:user", JSON.stringify(user)); // atualiza a info do user no storage e estado
 
       setData({ user, token: data.token }); // pegando o token já existente
       alert("Perfil atualizado com sucesso!");
@@ -74,8 +74,8 @@ function AuthProvider({ children }) {
   // 1º parte (arrow fcn): o q queremos executar após a renderização?
   // 2º parte (vetor): estado dependente q quando mudado, executará o useeffect. Se vazio, será carregado uma vez após a renderização.
   useEffect(() => {
-    const token = localStorage.getItem("@rockenotes:token");
-    const user = localStorage.getItem("@rockenotes:user");
+    const token = localStorage.getItem("@rocketnotes:token");
+    const user = localStorage.getItem("@rocketnotes:user");
 
     if (token && user) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -98,7 +98,6 @@ function AuthProvider({ children }) {
         user: data.user,
       }}
     >
-      {" "}
       {/* O contexto provê um valor p/ todas as rotas */}
       {children}
     </AuthContext.Provider>
