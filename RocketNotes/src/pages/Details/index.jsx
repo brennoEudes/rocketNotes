@@ -21,7 +21,7 @@ export function Details() {
 
   async function handleRemove() {
     const confirm = window.confirm("Deseja realmente excluir a nota?"); // confirm é mét JS q guarda booleano. É uma boa prática perguntar antes da remoção para evitar erros do usuário
-    
+
     // se clicar no confirmar:
     if (confirm) {
       await api.delete(`/notes/${params.id}`); // acessamos através de params pois temos o id da nota na rota
@@ -51,13 +51,13 @@ export function Details() {
               <Section title="Links Úteis">
                 {/* O children não é passado como prop. comum, mas captura tudo q está dentro (abaixo): */}
                 <Links>
-                  data.links.map((link) => (
-                  <li key={String(link.id)}>
-                    <a href="{link.url}" target="_blank">
-                      {link.url}
-                    </a>
-                  </li>
-                  ))
+                  {data.links.map((link) => (
+                    <li key={String(link.id)}>
+                      <a href="{link.url}" target="_blank">
+                        {link.url}
+                      </a>
+                    </li>
+                  ))}
                 </Links>
               </Section>
             )}
