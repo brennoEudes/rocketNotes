@@ -45,6 +45,8 @@ export const Avatar = styled.div`
     width: 186px;
     height: 186px;
     border-radius: 50%;
+    object-fit: cover; /* Garante que a imagem preencha o contêiner proporcionalmente */
+    object-position: center; /* Centraliza a imagem dentro do contêiner */
   }
 
   > label {
@@ -71,7 +73,6 @@ export const Avatar = styled.div`
       height: 20px;
 
       color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
-
     }
   }
 `;

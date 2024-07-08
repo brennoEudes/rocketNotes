@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom"; // p/ navegação
 
-
 export const Container = styled.header`
   grid-area: header;
 
@@ -27,6 +26,8 @@ export const Profile = styled(Link)`
     height: 56px;
 
     border-radius: 50%; /* Macete p/ criar círculo */
+    object-fit: cover; /* Garante que a imagem preencha o contêiner proporcionalmente */
+    object-position: center; /* Centraliza a imagem dentro do contêiner */
   }
 
   > div {
