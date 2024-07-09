@@ -15,7 +15,7 @@ import { api } from "../../services/api";
 import { Container, Form } from "./styles";
 
 export function NewNote() {
-  const [title, setTitle] = useState([]);
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const [links, setLinks] = useState([]); // setLinks guarda todos os links
@@ -31,8 +31,10 @@ export function NewNote() {
   }
 
   function handleAddLink() {
-    setLinks((prevState) => [...prevState, newLink]); // mantém o q tinha antes + o novo link
-    setNewLink(""); // reset estado
+    if (newLink) {
+      setLinks((prevState) => [...prevState, newLink]); // mantém o q tinha antes + o novo link
+      setNewLink(""); // reset estado
+    }
   }
 
   function handleRemoveLink(deleted) {
@@ -40,8 +42,10 @@ export function NewNote() {
   }
 
   function handleAddTag() {
-    setTags((prevState) => [...prevState, newTag]);
-    setNewTag("");
+    if (newTag) {
+      setTags((prevState) => [...prevState, newTag]);
+      setNewTag("");
+    }
   }
 
   function handleRemoveTag(deleted) {
@@ -53,11 +57,11 @@ export function NewNote() {
       return alert("Preencha o título corretamente!");
     }
 
-    if (newLink) {
+    if (links.length === 0) {
       return alert("Adicione o link corretamente!");
     }
 
-    if (newTag) {
+    if (tags.length === 0) {
       return alert("Adicione a tag corretamente!");
     }
 
