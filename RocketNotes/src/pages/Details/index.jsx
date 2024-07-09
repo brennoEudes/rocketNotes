@@ -32,6 +32,7 @@ export function Details() {
   useEffect(() => {
     async function fetchNote() {
       const response = await api.get(`/notes/${params.id}`);
+      console.log(response.data); // Adicione esta linha para inspecionar os dados recebidos
       setData(response.data);
     }
 
@@ -65,7 +66,7 @@ export function Details() {
             {data.tags && (
               <Section title="Marcadores">
                 {data.tags.map((tag) => (
-                  <Tag key={String(tag.id)} title={tag.title} />
+                  <Tag key={String(tag.id)} title={tag.name} />
                 ))}
               </Section>
             )}
