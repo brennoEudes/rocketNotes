@@ -6,9 +6,9 @@ Welcome to RocketNotes, the web application to manage your favorite movies! With
 ## 🌟 Features
 RocketNotes comes packed with features to enhance your movie tracking experience:
 
-- Add New Movie: Easily add new movies to your list with details like title, description, tags, and useful links;
-- Edit Movie: Modify existing movie entries to keep your list up-to-date;
-- Delete Movie: Remove movies from your list when they are no longer relevant;
+- Add New Movies: Easily add new movies to your list with details like title, description, tags, and useful links;
+- Edit Movies: Modify existing movie entries to keep your list up-to-date;
+- Delete Movies: Remove movies from your list when they are no longer relevant;
 - Tagging System: Organize your movies with customizable tags;
 - Useful Links: Add links to movie trailers, reviews, or any relevant site;
 
