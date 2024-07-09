@@ -1,7 +1,7 @@
 
 ## 🎬 RocketNotes - Your Personalized Movie List!
 
-Welcome to RocketNotes, the web application to manage your favorite movies! With RocketNotes, you can create and maintain a personalized list of movies, adding relevant details to each film to keep everything organized.
+Welcome to RocketNotes, the best web application to manage your favorite movies! With RocketNotes, you can create and maintain a personalized list of movies, adding relevant details to each film to keep everything organized.
 
 ## 🌟 Features
 RocketNotes comes packed with features to enhance your movie tracking experience:
